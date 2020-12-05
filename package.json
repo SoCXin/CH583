@@ -1,0 +1,7 @@
+{
+    "name":"CH555",
+    "Core":"8051",
+    "description":"1T 8051 CH555 MCU",
+    "url":"https://github.com/SoCXin/CH555",
+    "version":"1.0.0"
+}

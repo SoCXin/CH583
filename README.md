@@ -1,16 +1,37 @@
-﻿# [AMD](https://github.com/sochub/AMD) 
-[![sites](SoC/SoC.png)](http://www.qitas.cn) 
-#### 归属：[vendor](https://github.com/sochub/vendor) 
-#### 架构：[x86](https://github.com/sochub/X86) 
+﻿# [CH555](https://github.com/SoCXin/CH555)
 
-### [简介](https://github.com/sochub/AMD/wiki)
-[AMD (Advanced Micro Devices)](https://www.amd.com/zh-hans) 成立于1969年，在X86架构处理器领域和Intel竞争，在GPU领域和NVIDIA竞争，是在桌面CPU和GPU领域同时占有举足轻重地位的厂商。同时，AMD也是第一家提供64位ARM服务器处理器的公司。
+[![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-AMD 的x86处理器相较Intel的短板在跨核通讯，AMD 平台在同一个 CCX 内与 Intel 性能相近，跨 CCX 和跨 NUMA 性能会降低为 1/2 和 1/3。
+#### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](https://github.com/SoCXin/WCH)
+#### [Core](https://github.com/SoCXin/8051)：[E8051](https://github.com/SoCXin/8051)
+#### [Level](https://github.com/SoCXin/Level)：48MHz
 
-* [L6： Embedded](https://www.amd.com/zh-hans/products/embedded)
-* [L7： APU (Bristol Ridge)](https://www.amd.com/zh-hans/processors/athlon-and-a-series)
-* [L8： Ryzen (Summit Ridge)](https://github.com/sochub/Ryzen)
-* [L9： ThreadRipper](https://www.amd.com/zh-hans/products/ryzen-threadripper)
+## [CH555简介](https://github.com/SoCXin/CH555/wiki)
 
-##  [SoC资源平台](http://www.qitas.cn)
+[CH555](https://github.com/SoCXin/CH555)兼容MCS51的增强型E8051内核，79%指令是单字节单周期指令，3K BootLoader + 60K CodeFlash，8K xRAM + 256B iRAM，1K DataFlash。
+
+全速复合USB Device设备控制器和收发器，复合USB设备控制器包括一个USB device-hub和三个HID功能子设备。
+
+CH555内置了3*8路PWM，支持控制384只单色LED或者128组RGB三色LED。14路12位ADC、3组定时器和2路信号捕捉、2组异步串口、SPI、I2C从机等功能模块。
+
+[![sites](docs/CH555.png)](http://www.wch.cn/products/CH555.html)
+
+#### 关键特性
+
+* 复合USB Device；
+* LED驱动器，RGB(8x16),支持控制384只单色LED或者128组RGB三色LED；
+* UART x 2 + SPI(M/S) + IIC；
+* 14通道12位ADC；
+* 封装(LQFP48)
+
+### [资源收录](https://github.com/SoCXin/CH555)
+
+* [参考文档](docs/)
+* [参考资源](src/)
+* [参考工程](project/)
+
+### [选型建议](https://github.com/SoCXin)
+
+[CH555](https://github.com/SoCXin/CH555)可用于定制化机械键盘设计
+
+###  [SoC芯平台](http://www.SoC.Xin)
