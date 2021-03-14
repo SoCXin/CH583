@@ -2,9 +2,8 @@
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-#### [Vendor](https://github.com/SoCXin/Vendor)：[WCH](https://github.com/SoCXin/WCH)
-#### [Core](https://github.com/SoCXin/8051)：[E8051](https://github.com/SoCXin/8051)
-#### [Level](https://github.com/SoCXin/Level)：48MHz
+#### [WCH](https://github.com/SoCXin/WCH)：[E8051](https://github.com/SoCXin/8051)
+#### [Level](https://github.com/SoCXin/Level)：48 MHz
 
 ## [CH555简介](https://github.com/SoCXin/CH555/wiki)
 
@@ -34,4 +33,4 @@ CH555内置了3*8路PWM，支持控制384只单色LED或者128组RGB三色LED。
 
 [CH555](https://github.com/SoCXin/CH555)可用于定制化机械键盘设计
 
-###  [SoC芯平台](http://www.SoC.Xin)
+###  [探索芯世界 www.SoC.xin](http://www.SoC.Xin)

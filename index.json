@@ -1,5 +1,7 @@
 {
+    "type":"MCU",
     "name":"CH555",
+    "series":["CH555","CH555"],
     "Core":"8051",
     "description":"1T 8051 CH555 MCU",
     "url":"https://github.com/SoCXin/CH555",
