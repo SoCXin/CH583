@@ -1,36 +1,38 @@
-﻿# [CH555](https://github.com/SoCXin/CH555)
+﻿# [CH583](https://github.com/SoCXin/CH583)
 
 [![sites](http://182.61.61.133/link/resources/SoC.png)](http://www.SoC.Xin)
 
-#### [WCH](https://github.com/SoCXin/WCH)：[E8051](https://github.com/SoCXin/8051)
-#### [Level](https://github.com/SoCXin/Level)：48 MHz
+* [WCH](http://www.wch.cn/)：[RISC-V4A](https://github.com/SoCXin/RISC-V)
+* [L2R2](https://github.com/SoCXin/Level)：20 MHz
 
-## [CH555简介](https://github.com/SoCXin/CH555/wiki)
+## [简介](https://github.com/SoCXin/CH583/wiki)
 
-[CH555](https://github.com/SoCXin/CH555)兼容MCS51的增强型E8051内核，79%指令是单字节单周期指令，3K BootLoader + 60K CodeFlash，8K xRAM + 256B iRAM，1K DataFlash。
+[CH583](https://github.com/SoCXin/CH583) 集成BLE无线通讯的32位RISC微控制器。片上集成2Mbps低功耗蓝牙BLE 通讯模块、2个全速USB主机和设备控制器及收发器、2个SPI、4个串口、ADC、触摸按键检测模块、RTC等丰富的外设资源。
 
-全速复合USB Device设备控制器和收发器，复合USB设备控制器包括一个USB device-hub和三个HID功能子设备。
-
-CH555内置了3*8路PWM，支持控制384只单色LED或者128组RGB三色LED。14路12位ADC、3组定时器和2路信号捕捉、2组异步串口、SPI、I2C从机等功能模块。
-
-[![sites](docs/CH555.png)](http://www.wch.cn/products/CH555.html)
+[![sites](docs/CH583.png)](http://www.wch.cn/products/CH583.html)
 
 #### 关键特性
 
-* 复合USB Device；
-* LED驱动器，RGB(8x16),支持控制384只单色LED或者128组RGB三色LED；
-* UART x 2 + SPI(M/S) + IIC；
-* 14通道12位ADC；
-* 封装(LQFP48)
+* 32KB SRAM，1MB Flash，支持ICP、ISP和IAP，支持OTA无线升级
+* 2.4GHz RF收发器和基带及链路控制，支持BLE5.1
+* 接收灵敏度-98dBm，可编程+7dBm发送功率
+* 2组USB2.0 全速Host/Device
+* 4组UART，2组SPI，12路PWM，1路IIC
 
-### [资源收录](https://github.com/SoCXin/CH555)
+### [资源收录](https://github.com/SoCXin)
 
-* [参考文档](docs/)
 * [参考资源](src/)
+* [参考文档](docs/)
 * [参考工程](project/)
 
 ### [选型建议](https://github.com/SoCXin)
 
-[CH555](https://github.com/SoCXin/CH555)可用于定制化机械键盘设计
+[CH583](https://github.com/SoCXin/CH583)
 
-###  [探索芯世界 www.SoC.xin](http://www.SoC.Xin)
+* QFN48
+* QFN28 (4*4mm)
+
+[![sites](docs/diff.png)](http://www.wch.cn/products/CH583.html)
+[![sites](docs/list.png)](http://www.wch.cn/products/CH583.html)
+
+### [探索芯世界 www.SoC.xin](http://www.SoC.Xin)

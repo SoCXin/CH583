@@ -1,9 +1,44 @@
 {
-    "type":"MCU",
-    "name":"CH555",
-    "series":["CH555","CH555"],
-    "Core":"8051",
-    "description":"1T 8051 CH555 MCU",
-    "url":"https://github.com/SoCXin/CH555",
-    "version":"1.0.0"
+    "type":"SoC",
+    "name":"CH583",
+    "title": "WCH SoC CH583",
+    "description":"WCH RISC-V BLE SoC",
+    "version":"1.0.0",
+    "Core": {
+        "num": 1,
+        "type":"RISC-V",
+        "Freq": 20,
+        "DMIPS": 100,
+        "CoreMark": 160
+    },
+    "manufacturer": {
+        "vendor":"WCH",
+        "homepage": "http://www.wch.cn/products/CH583.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SoCXin/CH583.git"
+    },
+    "series":["CH583","CH582","CH581"],
+    "package":["QFN48","QFN28"],
+    "peripheral": ["TIM","ADC","USB","UART","SPI","LDO","PWM"],
+    "price":[12,16],
+    "EMC": {
+        "EFT": 2000,
+        "ESD": 4000
+    },
+    "upload": {
+        "ISP": true,
+        "IAP": true,
+        "SWD": true,
+        "speed": 115200
+    },
+    "keywords": [
+        "dev-platform",
+        "RISC-V",
+        "WCH",
+        "CH583",
+        "DAC","SDIO","CAN","I2C","RTC","SPI",
+        "3.6V","1.8V"
+    ]
 }
