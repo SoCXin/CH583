@@ -30,10 +30,6 @@
 
 [CH583](https://github.com/SoCXin/CH583)
 
-* QFN48
-* QFN28 (4*4mm)
-
 [![sites](docs/diff.png)](http://www.wch.cn/products/CH583.html)
-[![sites](docs/list.png)](http://www.wch.cn/products/CH583.html)
 
 ### [探索芯世界 www.SoC.xin](http://www.SoC.Xin)
