@@ -24,6 +24,7 @@
 * [参考资源](src/)
 * [参考文档](docs/)
 * [参考工程](project/)
+* [入门文档](https://docs.soc.xin/CH583)
 
 ### [选型建议](https://github.com/SoCXin)
 
