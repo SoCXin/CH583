@@ -276,9 +276,11 @@ static void vendor_message_srv_trans(struct bt_mesh_model   *model,
     uint8_t                  *pData = buf->data;
     uint16_t                  len = buf->len;
 
-    if(pData[0] != vendor_model_srv->srv_tid.trans_tid)
+    if((pData[0] != vendor_model_srv->srv_tid.trans_tid) ||
+       (ctx->addr != vendor_model_srv->srv_tid.trans_addr))
     {
         vendor_model_srv->srv_tid.trans_tid = pData[0];
+        vendor_model_srv->srv_tid.trans_addr = ctx->addr;
         // 开头为tid
         pData++;
         len--;
@@ -313,9 +315,11 @@ static void vendor_message_srv_write(struct bt_mesh_model   *model,
     uint8_t                  *pData = buf->data;
     uint16_t                  len = buf->len;
 
-    if(pData[0] != vendor_model_srv->srv_tid.write_tid)
+    if((pData[0] != vendor_model_srv->srv_tid.write_tid) ||
+       (ctx->addr != vendor_model_srv->srv_tid.write_addr) )
     {
         vendor_model_srv->srv_tid.write_tid = pData[0];
+        vendor_model_srv->srv_tid.write_addr = ctx->addr;
         // 开头为tid
         pData++;
         len--;
@@ -682,7 +686,7 @@ static void adv_srv_trans_send(void)
  *
  * @return  always SUCCESS
  */
-static int vendor_model_srv_init(struct bt_mesh_model *model)
+int vendor_model_srv_init(struct bt_mesh_model *model)
 {
     vendor_model_srv = model->user_data;
     vendor_model_srv->model = model;
@@ -726,7 +730,4 @@ static uint16_t vendor_model_srv_ProcessEvent(uint8_t task_id, uint16_t events)
     return 0;
 }
 
-const struct bt_mesh_model_cb bt_mesh_vendor_model_srv_cb = {
-    .init = vendor_model_srv_init,
-};
 /******************************** endfile @ main ******************************/

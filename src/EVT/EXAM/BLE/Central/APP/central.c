@@ -332,8 +332,8 @@ uint16_t Central_ProcessEvent(uint8_t task_id, uint16_t events)
     if(events & START_PHY_UPDATE_EVT)
     {
         // start phy update
-        PRINT("PHY Update %x...\n", GAPRole_UpdatePHY(centralConnHandle, 0, GAP_PHY_BIT_LE_2M,
-                                                      GAP_PHY_BIT_LE_2M, 0));
+        PRINT("PHY Update %x...\n", GAPRole_UpdatePHY(centralConnHandle, 0, 
+                    GAP_PHY_BIT_LE_2M, GAP_PHY_BIT_LE_2M, GAP_PHY_OPTIONS_NOPRE));
 
         return (events ^ START_PHY_UPDATE_EVT);
     }
@@ -644,7 +644,7 @@ static void centralEventCB(gapRoleEvent_t *pEvent)
                 {
                     tmos_start_task(centralTaskId, START_PARAM_UPDATE_EVT, DEFAULT_PARAM_UPDATE_DELAY);
                 }
-                // See if initiate connect parameter update
+                // See if initiate phy update
                 if(centralPhyUpdate)
                 {
                     tmos_start_task(centralTaskId, START_PHY_UPDATE_EVT, DEFAULT_PHY_UPDATE_DELAY);
@@ -701,20 +701,18 @@ static void centralEventCB(gapRoleEvent_t *pEvent)
         case GAP_EXT_ADV_DEVICE_INFO_EVENT:
         {
             // Display device addr
-            PRINT("Recv ext adv - Addr %x %x %x %x %x %x \n", pEvent->deviceExtAdvInfo.addr[0],
-                  pEvent->deviceExtAdvInfo.addr[1], pEvent->deviceExtAdvInfo.addr[2],
-                  pEvent->deviceExtAdvInfo.addr[3], pEvent->deviceExtAdvInfo.addr[4],
-                  pEvent->deviceExtAdvInfo.addr[5]);
+            PRINT("Recv ext adv \n");
+            // Add device to list
+            centralAddDeviceInfo(pEvent->deviceExtAdvInfo.addr, pEvent->deviceExtAdvInfo.addrType);
         }
         break;
 
         case GAP_DIRECT_DEVICE_INFO_EVENT:
         {
             // Display device addr
-            PRINT("Recv direct adv - Addr %x %x %x %x %x %x \n", pEvent->deviceExtAdvInfo.addr[0],
-                  pEvent->deviceExtAdvInfo.addr[1], pEvent->deviceExtAdvInfo.addr[2],
-                  pEvent->deviceExtAdvInfo.addr[3], pEvent->deviceExtAdvInfo.addr[4],
-                  pEvent->deviceExtAdvInfo.addr[5]);
+            PRINT("Recv direct adv \n");
+            // Add device to list
+            centralAddDeviceInfo(pEvent->deviceDirectInfo.addr, pEvent->deviceDirectInfo.addrType);
         }
         break;
 
@@ -785,7 +783,7 @@ static void centralPasscodeCB(uint8_t *deviceAddr, uint16_t connectionHandle,
     // Display passcode to user
     if(uiOutputs != 0)
     {
-        PRINT("Passcode:%d\n", (int)passcode);
+        PRINT("Passcode:%06d\n", (int)passcode);
     }
     // Send passcode response
     GAPBondMgr_PasscodeRsp(connectionHandle, SUCCESS, passcode);

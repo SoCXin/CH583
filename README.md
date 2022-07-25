@@ -1,15 +1,11 @@
 ﻿# [CH583](https://github.com/SoCXin/CH583)
 
-[![sites](http://182.61.61.133/link/resources/SoC.png)](https://docs.soc.xin/CH583)
-
 * [WCH](http://www.wch.cn/)：[RISC-V4A](https://github.com/SoCXin/RISC-V)
-* [L2R2](https://github.com/SoCXin/Level)：20 MHz
+* [L1R1](https://github.com/SoCXin/Level)：20 MHz
 
 ## [简介](https://github.com/SoCXin/CH583/wiki)
 
-[CH583](https://github.com/SoCXin/CH583) 集成BLE无线通讯的32位RISC微控制器。片上集成2Mbps低功耗蓝牙BLE 通讯模块、2个全速USB主机和设备控制器及收发器、2个SPI、4个串口、ADC、触摸按键检测模块、RTC等丰富的外设资源。
-
-[![sites](docs/CH583.png)](http://www.wch.cn/products/CH583.html)
+[CH583](http://www.wch.cn/products/CH583) 集成BLE无线通讯的32位RISC微控制器。片上集成2Mbps低功耗蓝牙BLE 通讯模块、2个全速USB主机和设备控制器及收发器、2个SPI、4个串口、ADC、触摸按键检测模块、RTC等丰富的外设资源。
 
 #### 关键特性
 

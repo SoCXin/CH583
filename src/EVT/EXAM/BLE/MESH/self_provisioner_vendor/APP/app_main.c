@@ -1,8 +1,8 @@
 /********************************** (C) COPYRIGHT *******************************
  * File Name          : main.c
  * Author             : WCH
- * Version            : V1.0
- * Date               : 2021/03/24
+ * Version            : V1.1
+ * Date               : 2022/01/18
  * Description        :
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
  * SPDX-License-Identifier: Apache-2.0
@@ -33,6 +33,7 @@ const uint8_t MacAddr[6] = {0x84, 0xC2, 0xE4, 0x03, 0x02, 0x02};
  * @return  none
  */
 __HIGH_CODE
+__attribute__((noinline))
 void Main_Circulation()
 {
     while(1)

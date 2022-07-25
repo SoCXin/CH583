@@ -16,6 +16,8 @@
 #include "app.h"
 #include "HAL.h"
 #include "peripheral.h"
+#include "app_generic_lightness_model.h"
+#include "app_generic_color_model.h"
 
 /*********************************************************************
  * GLOBAL TYPEDEFS
@@ -53,7 +55,7 @@ static void prov_reset(void);
 
 static struct bt_mesh_cfg_srv cfg_srv = {
     .relay = BLE_MESH_RELAY_ENABLED,
-    .beacon = BLE_MESH_BEACON_DISABLED,
+    .beacon = BLE_MESH_BEACON_ENABLED,
 #if(CONFIG_BLE_MESH_FRIEND)
     .frnd = BLE_MESH_FRIEND_ENABLED,
 #endif
@@ -80,10 +82,18 @@ uint16_t health_srv_groups[CONFIG_MESH_MOD_GROUP_COUNT_DEF] = {BLE_MESH_ADDR_UNA
 uint16_t gen_onoff_srv_keys[CONFIG_MESH_MOD_KEY_COUNT_DEF] = {BLE_MESH_KEY_UNUSED};
 uint16_t gen_onoff_srv_groups[CONFIG_MESH_MOD_GROUP_COUNT_DEF] = {BLE_MESH_ADDR_UNASSIGNED};
 
+uint16_t gen_lightness_srv_keys[CONFIG_MESH_MOD_KEY_COUNT_DEF] = {BLE_MESH_KEY_UNUSED};             //添加处  定义亮度属性
+uint16_t gen_lightness_srv_groups[CONFIG_MESH_MOD_GROUP_COUNT_DEF] = {BLE_MESH_ADDR_UNASSIGNED};
+
+uint16_t gen_color_srv_keys[CONFIG_MESH_MOD_KEY_COUNT_DEF] = {BLE_MESH_KEY_UNUSED};             //定义色温属性
+uint16_t gen_color_srv_groups[CONFIG_MESH_MOD_GROUP_COUNT_DEF] = {BLE_MESH_ADDR_UNASSIGNED};
+
 static struct bt_mesh_model root_models[] = {
     BLE_MESH_MODEL_CFG_SRV(cfg_srv_keys, cfg_srv_groups, &cfg_srv),
     BLE_MESH_MODEL_HEALTH_SRV(health_srv_keys, health_srv_groups, &health_srv, &health_pub),
     BLE_MESH_MODEL(BLE_MESH_MODEL_ID_GEN_ONOFF_SRV, gen_onoff_op, NULL, gen_onoff_srv_keys, gen_onoff_srv_groups, NULL),
+    BLE_MESH_MODEL(BLE_MESH_MODEL_ID_LIGHT_LIGHTNESS_SRV, gen_lightness_op, NULL, gen_lightness_srv_keys, gen_lightness_srv_groups, NULL),      //添加root 亮度属性
+    BLE_MESH_MODEL(BLE_MESH_MODEL_ID_LIGHT_CTL_TEMP_SRV , gen_color_op, NULL, gen_color_srv_keys, gen_color_srv_groups, NULL),      //添加root 色温属性
 };
 
 static struct bt_mesh_elem elements[] = {
@@ -212,6 +222,22 @@ static void link_close(bt_mesh_prov_bearer_t bearer, uint8_t reason)
         root_models[2].keys[0] = (uint16_t)0x0000;
         bt_mesh_store_mod_bind(&root_models[2]);
 
+        /* For Light Subscription group address */          //添加处  亮度属性
+        root_models[3].groups[0] = (uint16_t)0xC000;
+        root_models[3].groups[1] = (uint16_t)0xCFFF;
+        bt_mesh_store_mod_sub(&root_models[3]);
+
+        root_models[3].keys[0] = (uint16_t)0x0000;
+        bt_mesh_store_mod_bind(&root_models[3]);
+
+        /* For Light Subscription group address */          //添加处  色温属性
+        root_models[4].groups[0] = (uint16_t)0xC000;
+        root_models[4].groups[1] = (uint16_t)0xCFFF;
+        bt_mesh_store_mod_sub(&root_models[4]);
+
+        root_models[4].keys[0] = (uint16_t)0x0000;
+        bt_mesh_store_mod_bind(&root_models[4]);
+
         /* For Light Subscription group address */
         vnd_models[0].groups[0] = (uint16_t)0xC000;
         vnd_models[0].groups[1] = (uint16_t)0xCFFF;
@@ -228,7 +254,7 @@ static void link_close(bt_mesh_prov_bearer_t bearer, uint8_t reason)
  * @brief   配网完成回调，重新开始广播
  *
  * @param   net_idx     - 网络key的index
- * @param   addr        - link关闭原因网络地址
+ * @param   addr        - 网络地址
  * @param   flags       - 是否处于key refresh状态
  * @param   iv_index    - 当前网络iv的index
  *
@@ -327,13 +353,24 @@ void send_support_attr(void)
     }
     //	// 可选根据阿里云设置的产品属性功能添加对应属性 ( BLE_MESH_MODEL_OP_LIGHT_LIGHTNESS_SET )
     //	// 这里添加亮度属性留作参考,还需要添加对应的opcode处理函数,添加方式参考开关属性的 gen_onoff_op 结构
-    //	{
-    //		/* Add brightness attrbute opcode */
-    //		net_buf_simple_add_le16(&(ind->buf->b), ALI_GEN_ATTR_TYPE_BRIGHTNESS);
 
-    //	/* Add brightness status (655~65535对应天猫控制1~100) */
-    //		net_buf_simple_add_le16(&(ind->buf->b), 65535);
-    //	}
+    //添加亮度属性
+    {
+        /* Add brightness attrbute opcode */
+        net_buf_simple_add_le16(&(ind->buf->b), ALI_GEN_ATTR_TYPE_BRIGHTNESS);
+
+    /* Add brightness status (655~65535对应天猫控制亮度1~100) */
+        net_buf_simple_add_le16(&(ind->buf->b), 65535);
+    }
+
+    //添加色温属性
+    {
+        /* Add brightness attrbute opcode */
+        net_buf_simple_add_le16(&(ind->buf->b), ALI_GEN_ATTR_TYPE_COLOR);
+
+    /* Add brightness status (992~20000对应天猫控制色温1~100) */
+        net_buf_simple_add_le16(&(ind->buf->b), 20000);
+    }
 
     bt_mesh_indicate_send(ind);
 }
@@ -357,7 +394,9 @@ void send_led_state(void)
         .tid = als_avail_tid_get(),
     };
 
-    toggle_led_state(MSG_PIN);
+    //toggle_led_state(MSG_PIN);      //翻转灯的状态
+    //set_led_lightness(MSG_PIN, led_lightness);
+
 
     if(!bt_mesh_is_provisioned())
     {
@@ -365,7 +404,9 @@ void send_led_state(void)
         return;
     }
 
-    send_led_indicate(&param);
+    send_led_indicate(&param);                  //发送灯的 开关 状态
+    send_lightness_indicate(&param);            //发送灯的 亮度 状态
+    send_color_indicate(&param);                //发送灯的 色温 状态
 }
 
 /*********************************************************************
@@ -585,16 +626,28 @@ void blemesh_on_sync(void)
  *
  * @return  none
  */
+#if 0       //调试时，调用查看unknow回调状态
+void my_test1(uint32_t opcode, struct bt_mesh_model *model,
+        struct bt_mesh_msg_ctx *ctx, struct net_buf_simple *buf )
+{
+    PRINT("指令有效:%x\n", opcode);
+
+}
+#endif
+
 void App_Init(void)
 {
     GAPRole_PeripheralInit();
     Peripheral_Init();
     App_TaskID = TMOS_ProcessEventRegister(App_ProcessEvent);
 
+    als_vendor_init(vnd_models);
     blemesh_on_sync();
     HAL_KeyInit();
     HalKeyConfig(keyPress);
     set_led_state(MSG_PIN, 0);
+
+    //bt_mesh_model_reg_elem_unkonw_op_cb((elem_unkonw_op_cb_t)my_test1);  //初始化调用，查看天猫指令发送时 unknow回调状态
 }
 
 /*********************************************************************

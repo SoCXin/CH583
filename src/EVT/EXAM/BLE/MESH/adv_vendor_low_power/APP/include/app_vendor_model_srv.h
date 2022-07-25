@@ -143,7 +143,9 @@ typedef void (*vendor_model_srv_rsp_handler_t)(const vendor_model_srv_status_t *
 struct vendor_model_srv_tid
 {
     uint8_t trans_tid;
+    uint16_t trans_addr;
     uint8_t write_tid;
+    uint16_t write_addr;
 };
 
 /**
@@ -158,7 +160,6 @@ struct bt_mesh_vendor_model_srv
     vendor_model_srv_rsp_handler_t handler;
 };
 
-extern const struct bt_mesh_model_cb bt_mesh_vendor_model_srv_cb;
 extern const struct bt_mesh_model_op vnd_model_srv_op[];
 
 /**
@@ -218,6 +219,16 @@ uint8_t vendor_srv_tid_get(void);
  * @brief   复位厂商模型服务，取消所有正在发送的流程
  */
 void vendor_message_srv_trans_reset(void);
+
+/**
+ * @brief   厂商模型初始化
+ *
+ * @param   model       - 指向厂商模型结构体
+ *
+ * @return  always SUCCESS
+ */
+int vendor_model_srv_init(struct bt_mesh_model *model);
+
 
 #ifdef __cplusplus
 }

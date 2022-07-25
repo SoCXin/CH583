@@ -87,7 +87,9 @@ typedef void (*vendor_model_cli_rsp_handler_t)(const vendor_model_cli_status_t *
 struct vendor_model_cli_tid
 {
     uint8_t trans_tid;
+    uint16_t trans_addr;
     uint8_t ind_tid;
+    uint16_t ind_addr;
 };
 
 /**
@@ -139,6 +141,16 @@ uint8_t vendor_cli_tid_get(void);
  * @brief   复位厂商模型服务，取消所有正在发送的流程
  */
 void vendor_message_cli_trans_reset(void);
+
+/**
+ * @brief   厂商模型初始化
+ *
+ * @param   model       - 指向厂商模型结构体
+ *
+ * @return  always SUCCESS
+ */
+int vendor_model_cli_init(struct bt_mesh_model *model);
+
 
 #ifdef __cplusplus
 }

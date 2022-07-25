@@ -63,6 +63,7 @@ extern "C" {
 #define ALI_GEN_ATTR_TYPE_SPORTCOUNT              0x0212
 #define ALI_GEN_ATTR_TYPE_POWER_STATE             0x0100
 #define ALI_GEN_ATTR_TYPE_BRIGHTNESS              0x0121
+#define ALI_GEN_ATTR_TYPE_COLOR                   0x0122
 #define ALI_GEN_ATTR_TYPE_HARDWARE_RESET          0x0023
 
 #define ALI_TM_SUB_ADDRESS                        0xF000
@@ -128,7 +129,21 @@ void bt_mesh_indicate_send(struct bt_mesh_indicate *ind);
 
 void send_led_indicate(struct indicate_param *param);
 
+void send_lightness_indicate(struct indicate_param *param);
+
+void send_color_indicate(struct indicate_param *param);
+
 void bt_mesh_indicate_reset(void);
+
+/**
+ * @brief   阿里 厂家模型 初始化
+ *
+ * @param   model -  回调模型参数
+ *
+ * @return  always success
+ */
+int als_vendor_init(struct bt_mesh_model *model);
+
 
 #ifdef __cplusplus
 }
