@@ -25,6 +25,5 @@
 
 [CH583](https://github.com/SoCXin/CH583)
 
-[![sites](docs/diff.png)](http://www.wch.cn/products/CH583.html)
 
-### [探索芯世界 www.SoC.xin](http://www.SoC.Xin)
+### [www.SoC.xin](http://www.SoC.Xin)
