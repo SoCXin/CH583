@@ -4,8 +4,10 @@
  * Version            : V1.0
  * Date               : 2020/08/06
  * Description        : 定时器例子
+ *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
 #include "CH58x_common.h"
@@ -128,7 +130,7 @@ int main()
     }
     TMR2_DMACfg(ENABLE, (uint16_t)(uint32_t)&PwmBuf[0], (uint16_t)(uint32_t)&PwmBuf[100], Mode_LOOP);
     TMR2_PWMInit(Low_Level, PWM_Times_16);
-    /* 开启计数溢出中断，计慢1000个周期进入中断 */
+    /* 开启计数溢出中断，计满1000个周期进入中断 */
     TMR2_ClearITFlag(TMR1_2_IT_DMA_END);
     PFIC_EnableIRQ(TMR2_IRQn);
     TMR2_ITCfg(ENABLE, TMR1_2_IT_DMA_END);

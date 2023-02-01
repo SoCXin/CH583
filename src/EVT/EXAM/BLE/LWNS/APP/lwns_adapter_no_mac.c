@@ -4,8 +4,10 @@
  * Version            : V1.0
  * Date               : 2021/06/20
  * Description        : lwns适配器，不使用mac协议，纯透传
+ *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 #include "lwns_adapter_no_mac.h"
 #include "lwns_sec.h"
@@ -215,7 +217,7 @@ void lwns_init(void)
     }
     lwns_adapter_taskid = TMOS_ProcessEventRegister(lwns_adapter_ProcessEvent);
     lwns_phyoutput_taskid = TMOS_ProcessEventRegister(lwns_phyoutput_ProcessEvent);
-    tmos_start_task(lwns_phyoutput_taskid, LWNS_HTIMER_PERIOD_EVT, MS1_TO_SYSTEM_TIME(LWNS_HTIMER_PERIOD_MS));
+    tmos_start_reload_task(lwns_phyoutput_taskid, LWNS_HTIMER_PERIOD_EVT, MS1_TO_SYSTEM_TIME(LWNS_HTIMER_PERIOD_MS));
     ble_phy_manage_state = BLE_PHY_MANAGE_STATE_FREE;
     RF_Shut();
     RF_Rx(NULL, 0, USER_RF_RX_TX_TYPE, USER_RF_RX_TX_TYPE); //打开RF接收，如果需要低功耗管理，在其他地方打开。
@@ -331,7 +333,6 @@ static uint16_t lwns_phyoutput_ProcessEvent(uint8_t task_id, uint16_t events)
     if(events & LWNS_HTIMER_PERIOD_EVT)
     {
         lwns_htimer_update();                                                                                      //htimer更新
-        tmos_start_task(lwns_phyoutput_taskid, LWNS_HTIMER_PERIOD_EVT, MS1_TO_SYSTEM_TIME(LWNS_HTIMER_PERIOD_MS)); //周期性更新
         return (events ^ LWNS_HTIMER_PERIOD_EVT);
     }
     if(events & LWNS_PHY_OUTPUT_FINISH_EVT)
@@ -415,7 +416,7 @@ void lwns_start()
 {
     RF_Shut();
     RF_Rx(NULL, 0, USER_RF_RX_TX_TYPE, USER_RF_RX_TX_TYPE); //打开RF接收，如果需要低功耗管理，在其他地方打开。
-    tmos_start_task(lwns_phyoutput_taskid, LWNS_HTIMER_PERIOD_EVT, MS1_TO_SYSTEM_TIME(LWNS_HTIMER_PERIOD_MS));
+    tmos_start_reload_task(lwns_phyoutput_taskid, LWNS_HTIMER_PERIOD_EVT, MS1_TO_SYSTEM_TIME(LWNS_HTIMER_PERIOD_MS));
 }
 
 #endif /* LWNS_USE_NO_MAC */

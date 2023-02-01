@@ -4,8 +4,10 @@
  * Version            : V1.1
  * Date               : 2022/01/18
  * Description        :
+ *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
 /******************************************************************************/
@@ -596,11 +598,12 @@ static void friend_state(uint16_t lpn_addr, uint8_t state)
  *
  * @brief   朋友关系建立回调
  *
- * @param   state       - 回调状态
+ * @param   friend_addr - 朋友节点地址
+ *          state       - 回调状态
  *
  * @return  none
  */
-static void lpn_state(uint8_t state)
+static void lpn_state(uint16_t friend_addr, uint8_t state)
 {
     if(state == LPN_FRIENDSHIP_ESTABLISHED)
     {

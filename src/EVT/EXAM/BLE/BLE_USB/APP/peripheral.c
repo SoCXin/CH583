@@ -5,8 +5,10 @@
  * Date               : 2018/12/10
  * Description        : 外设从机多连接应用程序，初始化广播连接参数，然后广播，连接主机后，
  *                      请求更新连接参数，通过自定义服务传输数据
+ *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
 /*********************************************************************
@@ -85,25 +87,10 @@ static uint8_t Peripheral_TaskID = INVALID_TASK_ID; // Task ID for internal task
 // GAP - SCAN RSP data (max size = 31 bytes)
 static uint8_t scanRspData[] = {
     // complete name
-    0x12, // length of this data
+    0x0e, // length of this data
     GAP_ADTYPE_LOCAL_NAME_COMPLETE,
-    'S',
-    'i',
-    'm',
-    'p',
-    'l',
-    'e',
-    ' ',
-    'P',
-    'e',
-    'r',
-    'i',
-    'p',
-    'h',
-    'e',
-    'r',
-    'a',
-    'l',
+    'c', 'h','5', '8', '3', ' ', 'b', 'l', 'e', ' ', 'u', 's', 'b',
+
     // connection interval range
     0x05, // length of this data
     GAP_ADTYPE_SLAVE_CONN_INTERVAL_RANGE,
@@ -137,7 +124,7 @@ static uint8_t advertData[] = {
 };
 
 // GAP GATT Attributes
-static uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = "Simple Peripheral";
+static uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = "ch583 ble usb";
 
 // Connection item list
 static peripheralConnItem_t peripheralConnList;
@@ -477,6 +464,7 @@ static void Peripheral_LinkEstablished(gapRoleEvent_t *pEvent)
         peripheralConnList.connInterval = event->connInterval;
         peripheralConnList.connSlaveLatency = event->connLatency;
         peripheralConnList.connTimeout = event->connTimeout;
+        peripheralMTU =  ATT_MTU_SIZE;
 
         // Set timer for periodic event
         tmos_start_task(Peripheral_TaskID, SBP_PERIODIC_EVT, SBP_PERIODIC_EVT_PERIOD);
@@ -777,6 +765,11 @@ void app_usb_notify(uint8_t *SendBuf, uint8_t l)
 {
     uint8_t result;
     static attHandleValueNoti_t noti;
+    
+    if (l > (peripheralMTU - 3)) {
+        PRINT("usb notify too long, current MTU: %d\n", peripheralMTU);
+        return ;
+    }
     noti.len = l;
     noti.pValue = GATT_bm_alloc(peripheralConnList.connHandle, ATT_HANDLE_VALUE_NOTI, noti.len, NULL, 0);
     if(noti.pValue != NULL)

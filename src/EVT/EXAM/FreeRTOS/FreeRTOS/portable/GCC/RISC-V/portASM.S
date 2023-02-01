@@ -4,8 +4,10 @@
  * Version            : V1.0
  * Date               : 2022/05/10
  * Description        : WCH Qingke V4A FreeRTOSÒÆÖ²»ã±à½Ó¿Ú
+ *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
 #define portCONTEXT_SIZE ( 29 * 4 )
@@ -42,9 +44,11 @@ unified_interrupt_handler:
 	jal user_interrupt_handler
 
 #if ENABLE_INTERRUPT_NEST
-	csrc 0x804, 0x02					/* disable interrupt nests. */
+	csrc mstatus, 8						/* disable interrupt in machine mode. */
 	nop									/* wait for 3 grade pipeline. */
 	nop
+	nop
+	csrc 0x804, 0x02					/* disable interrupt nests. */
 	nop
 #endif
 

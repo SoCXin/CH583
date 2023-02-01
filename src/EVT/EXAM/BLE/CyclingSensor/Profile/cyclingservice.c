@@ -4,8 +4,10 @@
  * Version            : V1.0
  * Date               : 2018/12/11
  * Description        : ÆïÐÐ·þÎñ
+ *********************************************************************************
  * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
 /*********************************************************************
@@ -67,8 +69,6 @@ const uint8_t cyclingCommandUUID[ATT_BT_UUID_SIZE] = {
 /*********************************************************************
  * EXTERNAL FUNCTIONS
  */
-
-uint16_t CyclingService_ProcessEvent(uint8_t task_id, uint16_t events);
 
 /*********************************************************************
  * LOCAL VARIABLES
@@ -234,8 +234,6 @@ gattServiceCBs_t cyclingCBs = {
  * @fn      CyclingService_Init
  *
  * @brief   collect the TMOS task ID.
- *
- * @param   task_id - TMOS task ID.
  *
  * @return  none
  */

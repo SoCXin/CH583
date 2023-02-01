@@ -4,8 +4,10 @@
  * Version            : V1.0
  * Date               : 2022/06/29
  * Description        : 
- * Copyright (c) 2022 Nanjing Qinheng Microelectronics Co., Ltd.
- * SPDX-License-Identifier: Apache-2.0
+ *********************************************************************************
+ * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
+ * Attention: This software (modified or not) and binary are used for 
+ * microcontroller manufactured by Nanjing Qinheng Microelectronics.
  *******************************************************************************/
 
 #ifndef BLE_DIRECTTEST_APP_INCLUDE_HCI_TEST_H
@@ -80,6 +82,8 @@ struct bt_hci_cmd_hdr {
 #define BT_OGF(opcode)                          (((opcode) >> 10) & ((1<<6)- 1U))
 /* Obtain OCF from OpCode */
 #define BT_OCF(opcode)                          ((opcode) & ((1<<10) - 1U))
+
+#define BT_HCI_OP_RESET                         BT_OP(BT_OGF_BASEBAND, 0x0003)
 
 #define BT_HCI_OP_LE_TEST_END                   BT_OP(BT_OGF_LE, 0x001f)
 struct bt_hci_rp_le_test_end {
