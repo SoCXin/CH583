@@ -7,7 +7,7 @@
     "Core": {
         "num": 1,
         "type":"RISC-V",
-        "Freq": 20,
+        "Freq": 80,
         "DMIPS": 100,
         "CoreMark": 160
     },
@@ -34,10 +34,8 @@
         "speed": 115200
     },
     "keywords": [
-        "dev-platform",
         "RISC-V",
         "WCH",
-        "CH583",
         "DAC","SDIO","CAN","I2C","RTC","SPI",
         "3.6V","1.8V"
     ]

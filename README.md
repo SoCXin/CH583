@@ -1,7 +1,7 @@
 ﻿# [CH583](https://github.com/SoCXin/CH583)
 
-* [WCH](http://www.wch.cn/)：[RISC-V4A](https://github.com/SoCXin/RISC-V)
-* [L2R2](https://github.com/SoCXin/Level)：80 MHz , [￥4.43](https://item.szlcsc.com/3226374.html)
+* [WCH](http://www.wch.cn/)：[RISC-V4A (RV32IMAC)](https://github.com/SoCXin/RISC-V)
+* [L2R2](https://github.com/SoCXin/Level)：80 MHz , [￥4.43 (QFN48)](https://item.szlcsc.com/3226374.html)
 
 ## [简介](https://github.com/SoCXin/CH583/wiki)
 
@@ -25,8 +25,15 @@
 
 ## [选型建议](https://github.com/SoCXin)
 
-[CH582](https://item.szlcsc.com/3226374.html)相对[CH583](https://github.com/SoCXin/CH583)减少了一组SPI和512KB Flash，也不支持最低1.7V的电源供电电压。
+目前主要销售的[CH582](https://item.szlcsc.com/3226374.html)相对[CH583](https://github.com/SoCXin/CH583) 减少了一组SPI和512KB Flash，也不支持最低1.7V的电源供电电压。
 
-CH581 则相对 CH582 去掉了一组USB、触摸按键、I2C模块和两个串口，FlashROM总容量仅256KB，ADC不支持DMA。
+CH581 则相对 CH582 再去掉了一组USB、触摸按键、I2C模块和两个串口，FlashROM总容量仅256KB，同时ADC也不支持DMA。
 
-### [www.SoC.xin](http://www.SoC.Xin)
+[![sites](docs/list.jpg)](https://www.wch.cn/products/CH583.html)
+
+就低功耗BLE MCU而言，目前国内主要竞品包括 [BL706/BL702](https://github.com/SoCXin/BL706)，后者定位更高，封装相似，拥有更丰富的外设和
+
+
+### 开源方案
+
+* [PikaPython](https://github.com/OS-Q/PikaPython)

@@ -5,3 +5,4 @@
 .vscode/
 obj
 .settings
+*.zip
