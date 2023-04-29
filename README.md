@@ -1,7 +1,7 @@
 ﻿# [CH583](https://github.com/SoCXin/CH583)
 
 * [WCH](http://www.wch.cn/)：[RISC-V4A (RV32IMAC)](https://github.com/SoCXin/RISC-V)
-* [L2R2](https://github.com/SoCXin/Level)：80 MHz , [￥4.43 (QFN48)](https://item.szlcsc.com/3226374.html)
+* [L2R2](https://github.com/SoCXin/Level)：80 MHz (1.56DMIPS) , [￥4.43 (QFN48)](https://item.szlcsc.com/3226374.html)
 
 ## [简介](https://github.com/SoCXin/CH583/wiki)
 
@@ -9,7 +9,7 @@
 
 ### 关键特性
 
-* 20/80 MHz RISC-V4A Core (RV32IMAC,1.56DMIPS)
+* 20/80 MHz RISC-V4A Core (RV32IMAC)
 * 32KB SRAM + 512KB/1MB Flash
 * 2.4GHz RF收发器和基带及链路控制，支持BLE5.1
 * BLE 接收灵敏度-98dBm，可编程+7dBm发送功率
@@ -31,9 +31,12 @@ CH581 则相对 CH582 再去掉了一组USB、触摸按键、I2C模块和两个�
 
 [![sites](docs/list.jpg)](https://www.wch.cn/products/CH583.html)
 
-就低功耗BLE MCU而言，目前国内主要竞品包括 [BL706/BL702](https://github.com/SoCXin/BL706)，后者定位更高，封装相似，拥有更丰富的外设和
+就低功耗BLE MCU而言，目前国内主要竞品包括 [BL706/BL702](https://github.com/SoCXin/BL706)，后者定位更高，封装相似，拥有更丰富的外设。
+
+[CH583](https://github.com/SoCXin/CH583)最新升级型号[CH592](https://github.com/SoCXin/CH592)支持BLE 5.4，但是减少了外设配置，只保留一组USB
 
 
-### 开源方案
+## [开源集锦](https://github.com/OS-Q)
 
 * [PikaPython](https://github.com/OS-Q/PikaPython)
+* [PlatformIO](https://github.com/OS-Q/platform-ch32v)
