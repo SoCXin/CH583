@@ -1,0 +1,43 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - '**.rst'
+      - 'LICENSE'
+      - '.gitignore'
+
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        EXAM:
+          - "FreeRTOS"
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.OSQ_REPO_TOKEN }}
+          submodules: "recursive"
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -U https://github.com/OS-Q/pio/archive/main.zip
+          pio pkg install --global --platform https://github.com/OS-Q/platform-qingke.git
+
+      - name: Build EXAM
+        working-directory: EVT/EXAM
+        run: |
+          pio run -d ${{ matrix.EXAM }}

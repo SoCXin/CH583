@@ -1,5 +1,7 @@
 ﻿# [CH583](https://github.com/SoCXin/CH583)
 
+[![Build Status](https://github.com/SoCXin/CH583/workflows/build/badge.svg)](https://github.com/SoCXin/CH583/actions/workflows/build.yml)
+
 * [WCH](http://www.wch.cn/)：[RISC-V4A (RV32IMAC)](https://github.com/SoCXin/RISC-V)
 * [L2R2](https://github.com/SoCXin/Level)：80 MHz (1.56DMIPS) , [￥4.43 (QFN48)](https://item.szlcsc.com/3226374.html)
 
@@ -40,3 +42,5 @@ CH581 则相对 CH582 再去掉了一组USB、触摸按键、I2C模块和两个�
 
 * [PikaPython](https://github.com/OS-Q/PikaPython)
 * [PlatformIO](https://github.com/OS-Q/platform-ch32v)
+
+PIO编译的固件为BIN，目前无法通过WCHISPTool进行烧录
