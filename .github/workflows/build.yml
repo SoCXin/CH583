@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.OSQ_REPO_TOKEN }}
+          token: ${{ secrets.SOC_XIN_TOCKEN }}
           submodules: "recursive"
 
       - name: Set up Python
