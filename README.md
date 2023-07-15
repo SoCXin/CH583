@@ -42,5 +42,6 @@ CH581 则相对 CH582 再去掉了一组USB、触摸按键、I2C模块和两个�
 
 * [PikaPython](https://github.com/OS-Q/PikaPython)
 * [PlatformIO](https://github.com/OS-Q/platform-ch32v)
+* [DAPLink](https://github.com/SoCXin/DAPLink-CH582)
 
-PIO编译的固件为BIN，目前无法通过WCHISPTool进行烧录
+PIO编译的固件为BIN而非HEX，目前无法通过WCHISPTool进行烧录

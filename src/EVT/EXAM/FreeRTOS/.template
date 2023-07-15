@@ -14,3 +14,4 @@ Vendor=WCH
 MCU=CH582M
 Mcu Type=CH58x
 Link=WCH-Link
+CLKSpeed=1
