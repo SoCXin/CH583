@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <projectDescription>
 	<name>COM</name>
-	<comment></comment>
+	<comment/>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -45,15 +45,15 @@
 			<locationURI>PARENT-3-PROJECT_LOC/SRC/StdPeriphDriver</locationURI>
 		</link>
 	</linkedResources>
-	<filteredResources>
-		<filter>
-			<id>1689410987237</id>
-			<name></name>
-			<type>22</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-*.wvproj</arguments>
-			</matcher>
-		</filter>
-	</filteredResources>
+<filteredResources>
+<filter>
+<id>1595986042669</id>
+<name/>
+<type>22</type>
+<matcher>
+<id>org.eclipse.ui.ide.multiFilter</id>
+<arguments>1.0-name-matches-false-false-*.wvproj</arguments>
+</matcher>
+</filter>
+</filteredResources>
 </projectDescription>

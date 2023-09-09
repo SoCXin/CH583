@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/SoCXin/CH583/workflows/build/badge.svg)](https://github.com/SoCXin/CH583/actions/workflows/build.yml)
 
 * [WCH](http://www.wch.cn/)：[RISC-V4A (RV32IMAC)](https://github.com/SoCXin/RISC-V)
-* [L2R2](https://github.com/SoCXin/Level)：80 MHz (1.56DMIPS) , [￥4.43 (QFN48)](https://item.szlcsc.com/3226374.html)
+* [L1R1](https://github.com/SoCXin/Level)：20/80 MHz (1.56DMIPS) , [￥4.43 (QFN48)](https://item.szlcsc.com/3226374.html)
 
 ## [简介](https://github.com/SoCXin/CH583/wiki)
 
@@ -11,11 +11,10 @@
 
 ### 关键特性
 
-* 20/80 MHz RISC-V4A Core (RV32IMAC)
-* 32KB SRAM + 512KB/1MB Flash
-* 2.4GHz RF收发器和基带及链路控制，支持BLE5.1
-* BLE 接收灵敏度-98dBm，可编程+7dBm发送功率
-* 2xUSB2.0
+* 20/80 MHz RISC-V4A (RV32IMAC)
+* 32KB SRAM + 448KB Flash
+* BLE5.3 接收灵敏度-98dBm，可编程+7dBm发送功率
+* 2x USB1.1 H/D
 * 4xUART，SPI，12x PWM，IIC
 * 14x TouchPad
 
@@ -37,6 +36,7 @@ CH581 则相对 CH582 再去掉了一组USB、触摸按键、I2C模块和两个�
 
 [CH583](https://github.com/SoCXin/CH583)最新升级型号[CH592](https://github.com/SoCXin/CH592)支持BLE 5.4，但是减少了外设配置，只保留一组USB
 
+同品牌相似系列[CH32V208](https://www.wch.cn/products/CH32V208.html)
 
 ## [开源集锦](https://github.com/OS-Q)
 
