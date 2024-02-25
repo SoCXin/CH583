@@ -85,7 +85,8 @@ void CH58X_BLEInit(void)
         PRINT("head file error...\n");
         while(1);
     }
-    SysTick_Config(SysTick_LOAD_RELOAD_Msk);
+
+    SysTick_Config(SysTick_LOAD_RELOAD_Msk); // 配置SysTick并打开中断
     PFIC_DisableIRQ(SysTick_IRQn);
 
     tmos_memset(&cfg, 0, sizeof(bleConfig_t));
@@ -109,6 +110,7 @@ void CH58X_BLEInit(void)
 #endif
 #if(CLK_OSC32K)
     cfg.SelRTCClock = (uint32_t)CLK_OSC32K;
+    cfg.SelRTCClock |= 0x80;
 #endif
     cfg.ConnectNumber = (PERIPHERAL_MAX_CONNECTION & 3) | (CENTRAL_MAX_CONNECTION << 2);
     cfg.srandCB = SYS_GetSysTickCnt;

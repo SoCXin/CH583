@@ -9,6 +9,8 @@
 
 [CH583](https://www.wch.cn/products/CH583.html) 集成BLE无线通讯的32位RISC微控制器。片上集成2Mbps低功耗蓝牙BLE 通讯模块、2个全速USB主机和设备控制器及收发器、2个SPI、4个串口、ADC、触摸按键检测模块、RTC等丰富的外设资源。
 
+**PIO编译生成BIN而非HEX，目前无法通过WCHISPTool进行烧录**
+
 ### 关键特性
 
 * 20/80 MHz RISC-V4A (RV32IMAC)
@@ -44,4 +46,3 @@ CH581 则相对 CH582 再去掉了一组USB、触摸按键、I2C模块和两个�
 * [PlatformIO](https://github.com/OS-Q/platform-ch32v)
 * [DAPLink](https://github.com/SoCXin/DAPLink-CH582)
 
-PIO编译的固件为BIN而非HEX，目前无法通过WCHISPTool进行烧录

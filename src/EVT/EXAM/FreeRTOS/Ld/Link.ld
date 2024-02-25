@@ -1,5 +1,9 @@
 ENTRY( _start )
 
+__stack_size = 512;
+
+PROVIDE( _stack_size = __stack_size );
+
 MEMORY
 {
 	FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 448K
@@ -118,7 +122,7 @@ SECTIONS
 	
 	.dalign    : 
 	{
-		. = ORIGIN(RAM) + MAX(0x800 , SIZEOF(.highcode));
+		. = ORIGIN(RAM) + SIZEOF(.highcode);
 	} >RAM AT>FLASH
 	
 	.dlalign :
@@ -164,12 +168,15 @@ SECTIONS
 	PROVIDE( _end = _ebss);
 	PROVIDE( end = . );
 	
-	.stack ORIGIN(RAM)+LENGTH(RAM) :
-	{
-		. = ALIGN(4);
-		PROVIDE(_eusrstack = . );
-		__freertos_irq_stack_top = .;
-	} >RAM  
+    .stack ORIGIN(RAM) + LENGTH(RAM) - __stack_size :
+    {
+        PROVIDE( _heap_end = . );   
+        . = ALIGN(4);
+        PROVIDE(_susrstack = . );
+        . = . + __stack_size;
+        PROVIDE( _eusrstack = .);
+        PROVIDE(__freertos_irq_stack_top = .);
+    } >RAM 
 }
 
 

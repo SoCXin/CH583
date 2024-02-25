@@ -105,7 +105,7 @@ void app_usb_init()
  */
 uint8_t USBSendData(void)
 {
-    if(R8_UEP2_CTRL & UEP_T_RES_NAK == UEP_T_RES_NAK)
+    if((R8_UEP2_CTRL & MASK_UEP_T_RES) == UEP_T_RES_ACK)
     {
         return FAILURE;
     }

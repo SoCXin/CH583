@@ -611,8 +611,10 @@ void App_Init()
     vendor_model_srv_init(vnd_models);
     blemesh_on_sync();
     HAL_KeyInit();
+#if(defined HAL_KEY) && (HAL_KEY == TRUE)
     HalKeyConfig(keyPress);
-    tmos_start_task(App_TaskID, APP_NODE_TEST_EVT, 1600);
+#endif
+//    tmos_start_task(App_TaskID, APP_NODE_TEST_EVT, 1600);
 }
 
 /*********************************************************************
@@ -630,7 +632,6 @@ static uint16_t App_ProcessEvent(uint8_t task_id, uint16_t events)
 {
     if(events & APP_NODE_TEST_EVT)
     {
-        tmos_start_task(App_TaskID, APP_NODE_TEST_EVT, 2400);
         return (events ^ APP_NODE_TEST_EVT);
     }
     if(events & APP_LPN_ENABLE_EVT)

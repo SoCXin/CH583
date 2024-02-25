@@ -235,9 +235,6 @@ void CyclingSensor_Init()
         GAPRole_SetParameter(GAPROLE_ADVERT_DATA, sizeof(advertData), advertData);
     }
 
-    // Set the GAP Characteristics
-    GGS_SetParameter(GGS_DEVICE_NAME_ATT, sizeof(attDeviceName), attDeviceName);
-
     // Setup the GAP Bond Manager
     {
         uint32_t passkey = 0; // passkey "000000"
@@ -260,6 +257,9 @@ void CyclingSensor_Init()
     GATTServApp_AddService(GATT_ALL_SERVICES); // GATT attributes
     Cycling_AddService(GATT_ALL_SERVICES);
     DevInfo_AddService();
+
+    // Set the GAP Characteristics
+    GGS_SetParameter(GGS_DEVICE_NAME_ATT, sizeof(attDeviceName), attDeviceName);
 
     // Register for cycling service callback
     Cycling_Register(SensorCB);
